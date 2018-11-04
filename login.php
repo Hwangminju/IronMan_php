@@ -11,10 +11,12 @@
   // $id = 'joy';
   // $pw = '1111';
   mysqli_set_charset($conn, "utf8");
+  $sql_lr = "SELECT * FROM USERS WHERE USERID='$id'";
+  $result_lr = mysqli_query($conn, $sql_lr);
+  $row_lr = mysqli_fetch_array($result_lr);
 
   $sql = "SELECT IF(strcmp(PASSWORD,'$pw'),0,1) pw_chk FROM USERS WHERE USERID = '$id'";
   $result = mysqli_query($conn, $sql);
-  mysqli_query($conn, "CREATE TABLE user_$id (emg1 int(5) not null, emg2 int(5) not null, emg3 int(5) not null, gesture int(3) not null, primary key(gesture))");
 
   // result of sql query
   if($result)
@@ -25,7 +27,7 @@
     {
       echo "Can not find ID";
     } else {
-      echo "$row[pw_chk]";
+      echo "$row[pw_chk]"."$row_lr[lr]";
     }
   }
   else {

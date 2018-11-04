@@ -6,11 +6,12 @@
    $connect = mysqli_connect($host, $user, $pw, $dbName);
  
    $id = $_POST[u_id];
-   $pw = $_POST[u_pw]; 
+   $pw = $_POST[u_pw];
+   $lr = $_POST[u_lr];
 
    mysqli_set_charset($connect, "utf8");
 
-   $sql = "INSERT INTO USERS(USERID, PASSWORD) VALUES('$id', '$pw')"; 
+   $sql = "INSERT INTO USERS(USERID, PASSWORD, lr) VALUES('$id', '$pw', '$lr')";
    $result = mysqli_query($connect, $sql);
    $sql = "CREATE TABLE user_$id (emg1 int(5) not null, emg2 int(5) not null, emg3 int(5) not null, gesture int(3) not null)";
    $result = mysqli_query($connect, $sql);
